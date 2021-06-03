@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        BottomNavigationView.class 이용할 때
+        item 에 android:icon 에 selector 를 설정했다면, 아래 소스 코드를 설정해줘야 정상 반영된다.
+            navView.setItemIconTintList(null);
+    -->
+
+    <item
+        android:id="@+id/nav_my_contract"
+        android:icon="@drawable/selector_tab_1"
+        android:title="@string/tab_1_text" />
+
+    <item
+        android:id="@+id/nav_product"
+        android:icon="@drawable/selector_tab_2"
+        android:title="@string/tab_2_text" />
+
+    <item
+        android:id="@+id/nav_menu"
+        android:icon="@drawable/selector_tab_3"
+        android:title="@string/tab_3_text" />
+
+</menu>

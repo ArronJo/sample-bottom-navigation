@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+[크기 적용 방법]
+1. 해당 drawable 을 배경으로 가지는 widget 의 width, height 크기를 고정으로 설정하는 방법
+2. 해당 drawable 의 size 태그를 통해 크기를 지정하는 방법
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid
+        android:color="#fff" />
+    <stroke
+        android:width="0.5dp"
+        android:color="#fff" />
+    <size
+        android:width="8dp"
+        android:height="8dp" />
+</shape>

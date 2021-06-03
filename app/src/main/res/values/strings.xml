@@ -1,3 +1,52 @@
 <resources>
-    <string name="app_name">PROJECT_SAMPLE_BOTTOM-NAVIGATION</string>
+    <!-- Application -->
+    <string name="app_name">SAMPLE BOTTOM_NAVIGATION</string>
+
+    <!-- BackPress -->
+    <string name="back_pressed">\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.</string>
+
+    <!-- Common -->
+    <string name="app_exit">종료</string>
+
+    <!-- MainActivity -->
+    <string name="tab_1_text">tab1</string>
+    <string name="tab_2_text">tab2</string>
+    <string name="tab_3_text">tab3</string>
+
+    <string name="tab_1_desc">tab</string>
+    <string name="tab_2_desc">tab</string>
+    <string name="tab_3_desc">tab</string>
+
+    <string name="chat">chat</string>
+    <string name="help">help</string>
+
+    <!-- OnBoarding -->
+    <string name="onboarding_getting_started">시작하기</string>
+    <string name="onboarding_image">온보딩</string>
+
+    <!-- Permission -->
+    <string name="permission_title">안전한 이용을 위한 앱 접근 권한 안내</string>
+
+    <string name="permission_storage">저장공간(필수)</string>
+    <string name="permission_storage_desc">인증서 보관, 보안 구성 파일 설치, OS 위/변조 체크</string>
+    <string name="permission_phone_state">전화(필수)</string>
+    <string name="permission_phone_state_desc">기기 식별 정보 확인</string>
+
+    <string name="permission_optional_title">선택적 접근 권한은 동의하지 않아도 서비스 이용이 가능합니다.</string>
+    <string name="permission_location">\u2022 위치(선택) : 지점 찾기, 검색 서비스 이용 시 기기 위치 연동</string>
+    <string name="permission_camera">\u2022 카메라(선택) : 라이브 채팅, 사고보험금 청구 등 사진 전송</string>
+
+    <string name="permission_agree_button">확인</string>
+
+    <string name="permission_notice_title">접근 권한을 허용해주세요.</string>
+    <string name="permission_notice_message">앱을 원활하게 사용하기 위해서는\n필수 권한을 모두 허용해주셔야 합니다.</string>
+    <string name="permission_notice_goto_settings">권한 설정</string>
+
+    <string name="permission_rational_message">앱 사용을 위해서 접근 권한이 필요합니다.</string>
+
+    <!-- Coach -->
+    <string name="coach_title">앱이 새로워졌어요</string>
+    <string name="coach_message1">동해 물과 백두산이\n마르고 닳도록\n하느님이 보우하사\n우리나라 만세</string>
+    <string name="coach_message2">남산 위에 저 소나무\n철갑을 두른 듯\n바람 서리 불변함은\n우리 기상일세</string>
+
 </resources>

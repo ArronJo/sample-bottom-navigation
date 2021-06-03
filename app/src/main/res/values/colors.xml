@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <!-- 공통 -->
+    <color name="transparent">@android:color/transparent</color>
+    <color name="black_alpha_da">#da000000</color>
+    <color name="black">#ff000000</color>
+    <color name="white">#fffefefe</color>
+
+    <!-- 배경 -->
+    <color name="gray_f6f6f6">#f6f6f6</color>
+    <color name="gray_eeeeee">#eeeeee</color>
+    <color name="orange_ff6600">#ff6600</color>
+
+    <!-- 글자색 -->
+    <color name="gray_333333">#333333</color>
+    <color name="gray_999999">#999999</color>
+    <color name="gray_666666">#666666</color>
+
+    <!-- 디지털 디자인 가이드 -->
+    <color name="colorPrimaryDark">@color/transparent</color>
+    <color name="colorPrimary">@color/orange_ff6600</color>
+    <color name="colorAccent">@color/orange_ff6600</color>
+    <color name="colorAccent_alpha_4c">#4cff6600</color>
+
 </resources>

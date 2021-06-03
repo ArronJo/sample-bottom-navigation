@@ -1,10 +1,95 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Base application theme. -->
-    <style name="Theme.PROJECT_SAMPLE_BOTTOMNAVIGATION" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
-        <item name="colorAccent">@color/teal_200</item>
+    <style name="Theme.SNC" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <!--<style name="Theme.SNC" parent="Theme.AppCompat.Light.DarkActionBar">-->
+
+        <!-- Primary brand color. (Light) -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. (Dark) -->
+        <item name="colorSecondary">@color/colorPrimary</item>
+        <item name="colorSecondaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnSecondary">@color/white</item>
+
         <!-- Customize your theme here. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <item name="android:windowBackground">@drawable/bg_window</item>
+
+        <item name="android:textSize">@dimen/mediumFontSize</item>
+        <item name="android:textColor">@color/black</item>
+
+        <item name="android:windowAnimationStyle">@null</item>
+
+        <!--<item name="alertDialogTheme">@style/SNCAlertDialog</item>-->
+        <item name="bottomSheetDialogTheme">@style/SNCBottomSheetDialog</item>
+
     </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="Theme.SNC">
+
+    </style>
+
+
+    <!-- Component theme. -->
+
+    <!--<style name="SNCAlertDialog" parent="Base.Theme.AppCompat.Light.Dialog">-->
+    <!--
+    <style name="SNCAlertDialog" parent="Base.Theme.MaterialComponents.Light.Dialog">
+
+        <item name="android:textColor">#000000</item>
+        <item name="android:textColorPrimary">#595959</item>
+        <item name="android:colorAccent">#1b5e20</item>
+    </style>
+    -->
+
+
+    <!-- Custom Component theme. -->
+
+    <!-- BottomSheetDialog -->
+    <style name="SNCBottomSheetDialog" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/SNCBottomSheet</item>
+    </style>
+    <style name="SNCBottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/SNCShapeAppearanceBottomSheetDialog</item>
+    </style>
+    <style name="SNCShapeAppearanceBottomSheetDialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <!-- Dialog -->
+    <style name="SNCDialog" parent="@style/ThemeOverlay.MaterialComponents.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <style name="SNCDialog.NoDim" parent="SNCDialog">
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <!-- Button -->
+    <style name="SNCButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:textSize">@dimen/mediumFontSize</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:minHeight">60dp</item>
+        <item name="android:backgroundTint">@color/selector_ff6600</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
 </resources>

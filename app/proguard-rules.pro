@@ -19,3 +19,21 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+# androidx
+-keep class androidx.core.app.CoreComponentFactory { *; }
+
+
+# 3rd party libraries
+
+# TedPremission
+#noinspection ShrinkerUnresolvedReference
+-keep class com.gun0912.** { *; }
+-dontwarn com.gun0912.**
+
+# lottie
+#noinspection ShrinkerUnresolvedReference
+-keep class com.airbnb.** { *; }
+-dontwarn com.airbnb.**
+
