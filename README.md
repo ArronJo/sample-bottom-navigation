@@ -1,6 +1,6 @@
 
 # What is sample-bottom-navigation?
-
+This project is a sample for developing android application using bottom-navigation.
 
 
 # Release Note
