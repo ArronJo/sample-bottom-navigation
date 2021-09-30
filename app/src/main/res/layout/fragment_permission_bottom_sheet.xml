@@ -39,7 +39,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:gravity="center"
-                android:background="@drawable/bg_round_rect_eeeeee"
+                android:background="@drawable/bg_rounded_rect_eeeeee"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:gravity="center"
-                android:background="@drawable/bg_round_rect_eeeeee"
+                android:background="@drawable/bg_rounded_rect_eeeeee"
                 android:orientation="vertical">
                 <ImageView
                     android:layout_width="wrap_content"
@@ -168,7 +168,7 @@
         android:paddingRight="20dp"
         android:paddingBottom="20dp"
         android:background="@color/gray_f6f6f6">
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button"
             style="@style/SNCBottomButtonStyle"
             android:layout_width="match_parent"

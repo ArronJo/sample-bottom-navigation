@@ -2,7 +2,7 @@
 
     <!-- Base application theme. -->
     <style name="Theme.SNC" parent="Theme.MaterialComponents.Light.NoActionBar">
-    <!--<style name="Theme.SNC" parent="Theme.AppCompat.Light.DarkActionBar">-->
+    <!--<style name="Theme.SNC" parent="Theme.AppCompat.Light.NoActionBar">-->
 
         <!-- Primary brand color. (Light) -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -83,14 +83,32 @@
     </style>
 
     <!-- Button -->
-    <style name="SNCButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+    <!-- MaterialComponents 스타일 변경 이슈로 인해 App Theme 를 AppCompat 을 이용하거나,
+        버튼 객체를 다른 것을 이용 해야 한다.
+        https://curryyou.tistory.com/398
+
+        -AppCompatButton의 경우 drawable에 selector 적용이 잘 된다
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:background="@drawable/selector_button" ... />
+
+
+        -android.widget.Button의 경우 drawable에 selector 적용이 잘 된다
+
+            <android.widget.Button
+                android:background="@drawable/selector_button" ... />
+
+    -->
+    <!--<style name="SNCButtonStyle" parent="@style/Widget.MaterialComponents.Button">-->
+    <style name="SNCButtonStyle" parent="@style/Widget.AppCompat.Button">
         <item name="android:textSize">@dimen/mediumFontSize</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
         <item name="android:minHeight">70dp</item>
         <item name="android:background">@drawable/selector_primary_button</item>
-        <item name="android:backgroundTint">@color/selector_ff6600</item>
+        <!--<item name="android:backgroundTint">@color/selector_ff6600</item>-->
         <item name="android:stateListAnimator">@null</item>
+        <item name="cornerRadius">16dp</item>
     </style>
 
     <style name="SNCBottomButtonStyle" parent="@style/SNCButtonStyle">
