@@ -85,11 +85,17 @@
     <!-- Button -->
     <style name="SNCButtonStyle" parent="@style/Widget.MaterialComponents.Button">
         <item name="android:textSize">@dimen/mediumFontSize</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:minHeight">60dp</item>
+        <item name="android:minHeight">70dp</item>
+        <item name="android:background">@drawable/selector_primary_button</item>
         <item name="android:backgroundTint">@color/selector_ff6600</item>
         <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="SNCBottomButtonStyle" parent="@style/SNCButtonStyle">
+        <item name="android:textSize">@dimen/largeFontSize</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
 </resources>
