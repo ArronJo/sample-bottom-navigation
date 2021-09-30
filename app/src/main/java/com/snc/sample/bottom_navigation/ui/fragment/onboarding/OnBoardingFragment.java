@@ -89,8 +89,8 @@ public class OnBoardingFragment extends BaseFragment {
                         PrefEditor pref = new PrefEditor(requireContext());
                         pref.putString(PrefConst.DID_ON_BOARDING, "true");
 
-                        if (null != getOnFragmentInteractionListener()) {
-                            getOnFragmentInteractionListener().onInteraction(getFragment(), "remove", null);
+                        if (null != getInteractionListener()) {
+                            getInteractionListener().onInteraction(getFragment(), "remove", null);
                         }
                     }
 

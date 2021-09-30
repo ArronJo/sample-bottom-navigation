@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment;
  * @author mcharima5@gmail.com
  * @since 2018
  */
-public interface OnFragmentInteractionListener {
+public interface InteractionListener {
 
-    void onInteraction(Fragment fragment, String command, String params);
+    void onInteraction(Fragment fragment, String command, String[] params);
 
 }
 

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.snc.zero.activity.BaseActivity;
-import com.snc.zero.fragment.listener.OnFragmentInteractionListener;
+import com.snc.zero.fragment.listener.InteractionListener;
 import com.snc.zero.fragment.helper.FragmentHelper;
 
 import androidx.annotation.NonNull;
@@ -18,15 +18,15 @@ import androidx.fragment.app.Fragment;
  * @since 2018
  */
 public abstract class BaseFragment extends Fragment {
-    private OnFragmentInteractionListener listener;
+    private InteractionListener listener;
     private FragmentHelper fragmentHelper;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        if (context instanceof OnFragmentInteractionListener) {
-            listener = (OnFragmentInteractionListener) context;
+        if (context instanceof InteractionListener) {
+            listener = (InteractionListener) context;
         }
     }
 
@@ -56,11 +56,11 @@ public abstract class BaseFragment extends Fragment {
      * Fragment 이벤트를 부모 Activity 에게 전달하기 위한 리스너
      * @param listener - 리스너
      */
-    public void setOnFragmentInteractionListener(OnFragmentInteractionListener listener) {
+    public void setInteractionListener(InteractionListener listener) {
         this.listener = listener;
     }
 
-    public OnFragmentInteractionListener getOnFragmentInteractionListener() {
+    public InteractionListener getInteractionListener() {
         return this.listener;
     }
 

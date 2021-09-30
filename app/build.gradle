@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 31
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.snc.sample.bottom_navigation"
         minSdkVersion 23
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -18,7 +18,7 @@ android {
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         ndk {
-            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"    // arm 시리즈만 포함
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a"
         }
 
         buildConfigField "boolean", "FEATURE_SPLASH", "false"
@@ -36,10 +36,6 @@ android {
             v1SigningEnabled true
             v2SigningEnabled true
         }
-    }
-    dexOptions {
-        preDexLibraries false
-        additionalParameters "--multi-dex", "--set-max-idx-number", "65000"
     }
     buildTypes {
         release {
@@ -98,28 +94,25 @@ dependencies {
 
     testImplementation 'junit:junit:4.13.2'
     //noinspection GradleCompatible
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'com.google.android.material:material:1.4.0'
 
     implementation "androidx.multidex:multidex:2.0.1"
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation group: 'androidx.core', name: 'core', version: '1.6.0-alpha03'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation group: 'androidx.core', name: 'core', version: '1.7.0-beta01'
 
     // androidx.fragment.app.FragmentContainerView
-    implementation 'androidx.fragment:fragment:1.3.3'
-
-    // runtime permission library
-    implementation 'gun0912.ted:tedpermission:2.2.3'
+    implementation 'androidx.fragment:fragment:1.3.6'
 
     // androidx.webkit.WebViewAssetLoader
     implementation "androidx.webkit:webkit:1.4.0"
 
     // androidx.security.crypto.EncryptedSharedPreferences
     implementation 'androidx.security:security-crypto:1.1.0-alpha03'
-    implementation "androidx.security:security-identity-credential:1.0.0-alpha02"
+    implementation "androidx.security:security-identity-credential:1.0.0-alpha03"
     implementation('com.google.crypto.tink:tink-android') {
         version {
             strictly '1.4.0'
@@ -128,6 +121,10 @@ dependencies {
 
     //////////////////////////////////////////////
     // [ 3rd-party ]
+
+    // runtime permission library
+    implementation 'io.github.ParkSangGwon:tedpermission:3.2.3'
+    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.2.3'
 
     // lottie
     // http://airbnb.io/lottie/#/android

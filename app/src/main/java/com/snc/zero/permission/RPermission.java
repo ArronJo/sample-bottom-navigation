@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.gun0912.tedpermission.TedPermission;
+import com.gun0912.tedpermission.normal.TedPermission;
 import com.snc.zero.log.Logger;
 import com.snc.zero.resource.ResourceUtil;
 import com.snc.zero.util.StringUtil;
@@ -65,7 +65,7 @@ public class RPermission {
     }
 
     public void check() {
-        TedPermission.Builder builder = TedPermission.with(context);
+        TedPermission.Builder builder = TedPermission.create();
         if (!StringUtil.isEmpty(rationalMessage)) {
             builder.setRationaleMessage(rationalMessage);
         }

@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.snc.sample.bottom_navigation.BuildConfig;
 import com.snc.sample.bottom_navigation.R;
 import com.snc.sample.bottom_navigation.sharedpreference.PrefConst;
@@ -42,6 +44,7 @@ import com.snc.zero.widget.viewpager.ViewPager2Adapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -60,11 +63,6 @@ public class MainActivity extends BaseActivity {
     private OnBoardingFragment mOnboardingFragment;
 
     //////////////////////////////////////////////
-
-    private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationListener = (item) -> {
-        Logger.i(TAG, "Selected Item = " + item);
-        return showNavigationFromItemId(item.getItemId());
-    };
 
     @SuppressLint("NonConstantResourceId")
     private boolean showNavigationFromItemId(int itemId) {
@@ -163,7 +161,14 @@ public class MainActivity extends BaseActivity {
         final BottomNavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
         navigationView.setItemTextColor(ResourceUtil.getColorStateList(getContext(), R.color.selector_black));
-        navigationView.setOnNavigationItemSelectedListener(mOnNavigationListener);
+        //navigationView.setOnNavigationItemSelectedListener(item -> {
+        //    Logger.i(TAG, "Selected Item = " + item);
+        //    return showNavigationFromItemId(item.getItemId());
+        //});
+        navigationView.setOnItemSelectedListener(item -> {
+            Logger.i(TAG, "Selected Item = " + item);
+            return showNavigationFromItemId(item.getItemId());
+        });
 
         PrefEditor pref = new PrefEditor(getContext());
         String loginInfo = pref.getString(PrefConst.GET_LOGIN_INFO, "");
@@ -191,7 +196,7 @@ public class MainActivity extends BaseActivity {
     private void showSplashFragment() {
         Logger.i(TAG, "showSplashFragment()");
         final SplashFragment splashFragment = new SplashFragment();
-        splashFragment.setOnFragmentInteractionListener((fragment, command, params) -> {
+        splashFragment.setInteractionListener((fragment, command, params) -> {
             if ("remove".equalsIgnoreCase(command)) {
                 try {
                     mFragmentHelper.remove(mSplashFragment);
@@ -225,7 +230,7 @@ public class MainActivity extends BaseActivity {
     private void showOnBoardingFragment() {
         Logger.i(TAG, "showOnBoardingFragment()");
         final OnBoardingFragment onboardingFragment = new OnBoardingFragment();
-        onboardingFragment.setOnFragmentInteractionListener((fragment, command, params) -> {
+        onboardingFragment.setInteractionListener((fragment, command, params) -> {
             if ("remove".equalsIgnoreCase(command)) {
                 //mFragmentHelper.remove(onboardingFragment);
                 doCheckPermissions();

@@ -23,4 +23,7 @@
     <color name="colorAccent">@color/orange_ff6600</color>
     <color name="colorAccent_alpha_4c">#4cff6600</color>
 
+    <!-- Theme -->
+    <color name="activityBackground">@color/gray_f6f6f6</color>
+
 </resources>
