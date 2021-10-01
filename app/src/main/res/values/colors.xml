@@ -25,5 +25,6 @@
 
     <!-- Theme -->
     <color name="activityBackground">@color/gray_f6f6f6</color>
+    <color name="rippleEffect">#30ffffff</color>
 
 </resources>
