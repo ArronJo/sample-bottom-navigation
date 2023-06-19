@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="카테고리 이름"
+        android:layout="@layout/view_preferences_category">
+
+        <SwitchPreferenceCompat
+            android:key="notifications"
+            android:title="Enable alarm message notifications" />
+
+        <Preference
+            android:key="feedback"
+            android:title="Send feedback"
+            android:summary="Report technical issues or suggest new features" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="카테고리 이름"
+        android:layout="@layout/view_preferences_category">
+
+        <CheckBoxPreference
+            android:title="체크박스"
+            android:summary="체크박스 입니다."
+            android:key="checkbox"
+            android:defaultValue="true"/>
+
+        <SwitchPreference
+            android:key="switch2"
+            android:title="스위치2" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="카테고리 이름"
+        android:layout="@layout/view_preferences_category">
+
+        <ListPreference
+            android:title="언어"
+            android:summary="언어설정 입니다."
+            android:key="language"
+            android:defaultValue="ko"
+            android:entries="@array/array_voice"
+            android:entryValues="@array/array_voice"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="카테고리 이름"
+        android:layout="@layout/view_preferences_category">
+
+        <EditTextPreference
+            android:title="텍스트입력"
+            android:summary="텍스트입력 입니다."
+            android:defaultValue="test"
+            android:key="backup"/>
+
+        <Preference
+            android:title="기본">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://www.naver.com"/>
+        </Preference>
+
+        <Preference
+            android:title="백업 주기"
+            android:summary="백업 주기를 설정합니다. 시간으로 지정시, 앱이 백그라운드에서 동작합니다"
+            android:key="bu"
+            android:dependency="backup"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="버전정보"
+        android:layout="@layout/view_preferences_category">
+
+        <Preference
+            android:title=""
+            android:summary="현재 최신버전 입니다."
+            android:key="versionPref"
+            android:dependency="backup" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

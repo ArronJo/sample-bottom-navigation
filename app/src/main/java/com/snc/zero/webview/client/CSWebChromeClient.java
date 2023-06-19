@@ -54,7 +54,9 @@ public class CSWebChromeClient extends WebChromeClient {
 
         List<String> permissions = new ArrayList<>();
         permissions.add(Manifest.permission.CAMERA);
-        permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
 
         RPermission.with(this.context)
                 .setPermissionListener(new RPermissionListener() {
@@ -115,6 +117,7 @@ public class CSWebChromeClient extends WebChromeClient {
 
         newWebView.setWebViewClient(new CSWebViewClient(view.getContext()) {
 
+            @SuppressWarnings("deprecation")
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Logger.i(TAG, "[WEBVIEW] shouldOverrideUrlLoading : " + url);

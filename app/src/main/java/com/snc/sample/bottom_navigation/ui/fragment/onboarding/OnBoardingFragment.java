@@ -3,6 +3,7 @@ package com.snc.sample.bottom_navigation.ui.fragment.onboarding;
 import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -72,8 +73,14 @@ public class OnBoardingFragment extends BaseFragment {
         List<String> permissions = new ArrayList<>();
         // Dangerous Permission
         permissions.add(Manifest.permission.READ_PHONE_STATE);
-        permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-        permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
+
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q) {
+            permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
 
         checkPermission(permissions, null);
     }
@@ -89,9 +96,7 @@ public class OnBoardingFragment extends BaseFragment {
                         PrefEditor pref = new PrefEditor(requireContext());
                         pref.putString(PrefConst.DID_ON_BOARDING, "true");
 
-                        if (null != getInteractionListener()) {
-                            getInteractionListener().onInteraction(getFragment(), "remove", null);
-                        }
+                        sendMessage("remove", (Object[]) null);
                     }
 
                     @Override

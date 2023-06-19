@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ripple
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/rippleEffect"> <!-- Ripple color :: WHITE -->
+
+    <item android:drawable="@drawable/svg_ic_settings" />
+
+    <!-- Make sure the ripple doesn't exceed the bounds -->
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/colorPrimary" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+</ripple>

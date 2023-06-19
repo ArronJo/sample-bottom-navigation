@@ -84,10 +84,6 @@ public class WebViewHelper {
         settings.setBuiltInZoomControls(true);
         settings.setDisplayZoomControls(false);
 
-        if (Build.VERSION.SDK_INT < 30) {  // Build.VERSION_CODES.R
-            settings.setAppCacheEnabled(false);
-        }
-
         settings.setAllowFileAccess(true);
         settings.setAllowContentAccess(true);
         settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
@@ -161,7 +157,9 @@ public class WebViewHelper {
         }
         else if (uriString.startsWith(SCHEME_FILE)) {
             List<String> permissions = new ArrayList<>();
-            permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE); // Dangerous Permission
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
 
             RPermission.with(webView.getContext())
                     .setPermissionListener(new RPermissionListener() {

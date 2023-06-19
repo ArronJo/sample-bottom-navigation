@@ -13,6 +13,15 @@ import android.os.Build;
  */
 public class PackageUtil {
 
+    public static String getPackageDisplayVersion(Context context) throws PackageManager.NameNotFoundException {
+        StringBuilder version = new StringBuilder();
+        String verName = getPackageVersionName(context);
+        version.append("ver.").append(verName);
+        int rev = getPackageVersionCode(context);
+        version.append("  (rev.").append(rev).append(")");
+        return version.toString();
+    }
+
     public static String getPackageVersionName(Context context) throws PackageManager.NameNotFoundException {
         return getPackageInfo(context).versionName;
     }

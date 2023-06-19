@@ -3,7 +3,6 @@ package com.snc.zero.resource;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
-import android.os.Build;
 
 import com.snc.zero.log.Logger;
 
@@ -29,10 +28,7 @@ public class ResourceUtil {
 
     public static String getString(Context context, int resId) {
         try {
-            if (Build.VERSION.SDK_INT >= 23) {
-                return context.getString(resId);
-            }
-            return context.getResources().getString(resId);
+            return context.getString(resId);
         } catch (Resources.NotFoundException e) {
             Logger.e(TAG, e);
         }

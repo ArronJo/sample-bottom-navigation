@@ -5,11 +5,12 @@ import android.content.Context;
 import android.view.KeyEvent;
 
 import com.snc.zero.activity.BaseActivity;
-import com.snc.zero.fragment.listener.InteractionListener;
 import com.snc.zero.fragment.helper.FragmentHelper;
+import com.snc.zero.fragment.listener.MessageListener;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Abstract base fragment
@@ -18,20 +19,24 @@ import androidx.fragment.app.Fragment;
  * @since 2018
  */
 public abstract class BaseFragment extends Fragment {
-    private InteractionListener listener;
+    private MessageListener listener;
     private FragmentHelper fragmentHelper;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
-        if (context instanceof InteractionListener) {
-            listener = (InteractionListener) context;
+        if (context instanceof MessageListener) {
+            listener = (MessageListener) context;
         }
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return false;
+    }
+
+    public FragmentActivity getParentActivity() {
+        return requireActivity();
     }
 
     public Fragment getFragment() {
@@ -56,37 +61,16 @@ public abstract class BaseFragment extends Fragment {
      * Fragment 이벤트를 부모 Activity 에게 전달하기 위한 리스너
      * @param listener - 리스너
      */
-    public void setInteractionListener(InteractionListener listener) {
+    public void setMessageListener(MessageListener listener) {
         this.listener = listener;
     }
 
-    public InteractionListener getInteractionListener() {
-        return this.listener;
+    public boolean sendMessage(String command, Object...params) {
+        if (null == this.listener) {
+            return false;
+        }
+        this.listener.onMessage(getFragment(), command, params);
+        return true;
     }
 
-    /*
-    public void showProgress() {
-        if (getActivity() instanceof BaseActivity) {
-            ((BaseActivity) getActivity()).showProgress();
-        }
-    }
-
-    public void hideProgress() {
-        if (getActivity() instanceof BaseActivity) {
-            ((BaseActivity) getActivity()).hideProgress();
-        }
-    }
-
-    public void showProgressInside() {
-        if (getActivity() instanceof BaseActivity) {
-            ((BaseActivity) getActivity()).showProgressInside();
-        }
-    }
-
-    public void hideProgressInside() {
-        if (getActivity() instanceof BaseActivity) {
-            ((BaseActivity) getActivity()).hideProgressInside();
-        }
-    }
-     */
 }

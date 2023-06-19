@@ -2,7 +2,6 @@ package com.snc.zero.sharedpreference;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 
@@ -24,6 +23,7 @@ public class PrefEditor {
 	private static final String TAG = PrefEditor.class.getSimpleName();
 
 	private SharedPreferences mPreference;
+	private SharedPreferences.OnSharedPreferenceChangeListener mListener;
 
 	public PrefEditor(Context context) {
 		try {
@@ -34,24 +34,17 @@ public class PrefEditor {
 			 *   or increase this project's minSdk version to at least 24,
 			 *   or use tools:overrideLibrary="androidx.security.identity.credential" to force usage (may lead to runtime failures)
 			 */
-			MasterKey masterKey;
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-				KeyGenParameterSpec spec =  new KeyGenParameterSpec.Builder(
-						MasterKey.DEFAULT_MASTER_KEY_ALIAS,
-						KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
-						.setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-						.setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-						.setKeySize(MasterKey.DEFAULT_AES_GCM_MASTER_KEY_SIZE)
-						.build();
+			KeyGenParameterSpec spec =  new KeyGenParameterSpec.Builder(
+					MasterKey.DEFAULT_MASTER_KEY_ALIAS,
+					KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+					.setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+					.setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+					.setKeySize(MasterKey.DEFAULT_AES_GCM_MASTER_KEY_SIZE)
+					.build();
 
-				masterKey = new MasterKey.Builder(context)
-						.setKeyGenParameterSpec(spec)
-						.build();
-			} else {
-				masterKey = new MasterKey.Builder(context)
-						.setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-						.build();
-			}
+			MasterKey masterKey = new MasterKey.Builder(context)
+					.setKeyGenParameterSpec(spec)
+					.build();
 
 			mPreference = EncryptedSharedPreferences.create(
 					context.getApplicationContext(),
@@ -63,7 +56,7 @@ public class PrefEditor {
 
 			//mPreference = context.getSharedPreferences(context.getPackageName() + ".pref", Context.MODE_PRIVATE);
 
-		} catch (GeneralSecurityException | IOException e) {
+		} catch (Exception e) {
 			Logger.e(TAG, e);
 		}
 	}
@@ -87,6 +80,19 @@ public class PrefEditor {
 		SharedPreferences.Editor editor = mPreference.edit();
 		editor.putString(key, value);
 		editor.apply();
+	}
+
+	public void registerOnSharedPreferenceChangeListener(SharedPreferences.OnSharedPreferenceChangeListener listener) {
+		mPreference.registerOnSharedPreferenceChangeListener(listener);
+		mListener = listener;
+	}
+
+	@SuppressWarnings("unused")
+	public void unregisterOnSharedPreferenceChangeListener() {
+		if (null == mListener) {
+			return;
+		}
+		mPreference.unregisterOnSharedPreferenceChangeListener(mListener);
 	}
 
 }

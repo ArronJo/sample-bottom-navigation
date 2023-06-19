@@ -45,12 +45,11 @@ public class DialogBuilder {
 		return this;
 	}
 
-	/*
+	@SuppressWarnings("unused")
 	public DialogBuilder setTitle(int resId) {
 		this.title = ResourceUtil.getString(activity, resId);
 		return this;
 	}
-	 */
 
 	public DialogBuilder setMessage(String message) {
 		this.message = message;

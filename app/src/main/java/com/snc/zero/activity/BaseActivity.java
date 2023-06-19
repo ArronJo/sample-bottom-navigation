@@ -1,15 +1,17 @@
 package com.snc.zero.activity;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.ViewGroup;
 
 import com.snc.sample.bottom_navigation.ui.dialog.SpinnerDialog;
 import com.snc.zero.application.SNCApplication;
 import com.snc.zero.handler.EventHandler;
+import com.snc.zero.permission.RPermission;
+import com.snc.zero.permission.RPermissionListener;
 import com.snc.zero.security.SecureMode;
 
-import androidx.annotation.Nullable;
+import java.util.List;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
@@ -22,8 +24,6 @@ import androidx.fragment.app.FragmentActivity;
 public abstract class BaseActivity extends AppCompatActivity {
     private final EventHandler mHandler = new EventHandler();
     private SpinnerDialog mSpinnerDialog;
-    //private View mSpinnerView;
-    //private BroadcastReceiver mFinishReceiver;
 
     public SNCApplication getApplicationContext() {
         return (SNCApplication) super.getApplicationContext();
@@ -38,12 +38,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //registerFinishReceiver();
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
         SecureMode.disable(getActivity());
@@ -53,12 +47,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         SecureMode.enable(getActivity());
-    }
-
-    @Override
-    protected void onDestroy() {
-        //unregisterFinishReceiver();
-        super.onDestroy();
     }
 
     protected ViewGroup getRootView() {
@@ -86,13 +74,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         mSpinnerDialog = null;
     }
 
-    /*
-    public void showProgressInside() {
-        mSpinnerView = LayoutInflater.from(getContext()).inflate(R.layout.view_spinner_progress_dialog, getRootView());
+    public void doCheckPermissions(List<String> permissions, RPermissionListener listener) {
+        RPermission.with(getContext())
+                .setPermissionListener(listener)
+                .setPermissions(permissions)
+                .check();
     }
-
-    public void hideProgressInside() {
-        getRootView().removeView(mSpinnerView);
-    }
-     */
 }

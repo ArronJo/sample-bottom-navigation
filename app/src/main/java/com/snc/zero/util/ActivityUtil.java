@@ -2,7 +2,6 @@ package com.snc.zero.util;
 
 import android.app.Activity;
 
-import com.snc.zero.handler.EventHandler;
 import com.snc.zero.log.Logger;
 
 /**
@@ -14,7 +13,7 @@ import com.snc.zero.log.Logger;
 public class ActivityUtil {
     private static final String TAG = ActivityUtil.class.getSimpleName();
 
-    private static final EventHandler handler = new EventHandler();
+    //private static final EventHandler handler = new EventHandler();
 
     public static void killProcess(Activity activity) {
         try {

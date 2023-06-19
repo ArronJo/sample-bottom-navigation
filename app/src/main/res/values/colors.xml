@@ -10,6 +10,7 @@
     <!-- 배경 -->
     <color name="gray_f6f6f6">#f6f6f6</color>
     <color name="gray_eeeeee">#eeeeee</color>
+    <color name="gray_f4f6f8">#f4f6f8</color>
     <color name="orange_ff6600">#ff6600</color>
 
     <!-- 글자색 -->

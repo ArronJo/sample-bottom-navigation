@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/base_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/transparent"
-    tools:context="com.snc.sample.bottom_navigation.ui.activity.MainActivity"
-    tools:ignore="Overdraw">
+<!-- https://developer.android.com/training/constraint-layout -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include
-        layout="@layout/view_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <data>
 
-    <!--
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main_layout"
+        android:id="@+id/base_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/transparent"
-        android:visibility="visible" />
-    -->
+        tools:context="com.snc.sample.bottom_navigation.ui.activity.MainActivity"
+        tools:ignore="Overdraw">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <include layout="@layout/view_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

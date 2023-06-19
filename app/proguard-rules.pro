@@ -22,7 +22,13 @@
 
 
 # androidx
+# Didn't find class "androidx.core.app.CoreComponentFactory"
+-dontwarn androidx.**
+-dontnote androidx.**
+-keep class androidx.** { *; }
+-keep interface androidx.** { *; }
 -keep class androidx.core.app.CoreComponentFactory { *; }
+-keep class **.androidx.** { *; }
 
 
 # 3rd party libraries

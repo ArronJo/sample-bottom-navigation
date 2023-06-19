@@ -26,6 +26,8 @@
         <!--<item name="alertDialogTheme">@style/SNCAlertDialog</item>-->
         <item name="bottomSheetDialogTheme">@style/SNCBottomSheetDialog</item>
 
+        <!--<item name="preferenceTheme">@style/SNCPreferenceTheme</item>-->
+
     </style>
 
     <!-- Application theme. -->
@@ -87,13 +89,13 @@
         버튼 객체를 다른 것을 이용 해야 한다.
         https://curryyou.tistory.com/398
 
-        -AppCompatButton의 경우 drawable에 selector 적용이 잘 된다
+        -AppCompatButton 의 경우 drawable 에 selector 적용이 잘 된다
 
             <androidx.appcompat.widget.AppCompatButton
                 android:background="@drawable/selector_button" ... />
 
 
-        -android.widget.Button의 경우 drawable에 selector 적용이 잘 된다
+        -android.widget.Button 의 경우 drawable 에 selector 적용이 잘 된다
 
             <android.widget.Button
                 android:background="@drawable/selector_button" ... />
@@ -108,13 +110,20 @@
         <item name="android:background">@drawable/ripple_effect_primary</item>
         <!--<item name="android:backgroundTint">@color/selector_ff6600</item>-->
         <item name="android:stateListAnimator">@null</item>
-        <item name="cornerRadius">16dp</item>
+        <item name="cornerRadius">10dp</item>
     </style>
 
     <style name="SNCBottomButtonStyle" parent="@style/SNCButtonStyle">
         <item name="android:textSize">@dimen/largeFontSize</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:minHeight">70dp</item>
+        <item name="android:minHeight">60dp</item>
     </style>
+
+    <!-- Preference -->
+    <!-- https://developer.android.com/jetpack/androidx/releases/archive/androidx?hl=ko#1.0.0rc01 -->
+    <!--<style name="SNCPreferenceTheme" parent="@style/PreferenceThemeOverlay">
+
+    </style>
+    -->
 
 </resources>

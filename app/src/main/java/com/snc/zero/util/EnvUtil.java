@@ -29,10 +29,4 @@ public class EnvUtil {
         return null;
     }
 
-    /*
-    public static boolean isFilesDir(Context context, File file) {
-        File dir = context.getExternalFilesDir(null);
-        return file.getAbsolutePath().startsWith(dir.getAbsolutePath());
-    }
-     */
 }

@@ -38,11 +38,7 @@ public class SplashFragment extends BaseFragment {
 
         long elapseTime = (SystemClock.elapsedRealtime() - startTime);
         long delayMillis = defaultInterval - elapseTime;
-        postDelayed(() -> {
-            if (null != getInteractionListener()) {
-                getInteractionListener().onInteraction(getFragment(), "remove", null);
-            }
-        }, Math.max(delayMillis, 0));
+        postDelayed(() -> sendMessage("remove", (Object[]) null), Math.max(delayMillis, 0));
     }
 
 }

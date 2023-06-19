@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.snc.sample.bottom_navigation">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Normal Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -29,19 +28,49 @@
         android:hardwareAccelerated="true"
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:appComponentFactory="androidx"
+        tools:replace="android:appComponentFactory"
+        tools:ignore="UnusedAttribute">
 
         <!-- Activity -->
         <activity android:name="com.snc.sample.bottom_navigation.ui.activity.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenLayout|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             android:launchMode="singleTop"
             android:clearTaskOnLaunch="true"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
-            android:screenOrientation="portrait"
-            android:exported="true"
-            tools:ignore="LockedOrientationActivity">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.snc.sample.bottom_navigation.ui.activity.WebActivity"
+            android:configChanges="keyboardHidden|orientation|screenLayout|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:exported="false">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.snc.sample.bottom_navigation.ui.activity.WebFragmentActivity"
+            android:configChanges="keyboardHidden|orientation|screenLayout|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:exported="false">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.snc.sample.bottom_navigation.ui.activity.SettingsActivity"
+            android:configChanges="keyboardHidden|orientation|screenLayout|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:launchMode="singleTop"
+            android:exported="false">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 

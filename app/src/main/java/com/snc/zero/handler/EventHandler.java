@@ -31,15 +31,4 @@ public class EventHandler {
         mHandler.postDelayed(runnable, delayMillis);
     }
 
-    /*
-    public void post(Runnable runnable) {
-        mHandler.removeCallbacks(runnable);
-        mHandler.post(runnable);
-    }
-
-    public void removeCallbacks(Runnable runnable) {
-        mHandler.removeCallbacks(runnable);
-    }
-     */
-
 }

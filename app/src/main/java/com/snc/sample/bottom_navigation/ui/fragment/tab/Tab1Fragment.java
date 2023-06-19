@@ -2,27 +2,19 @@ package com.snc.sample.bottom_navigation.ui.fragment.tab;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 
-import com.snc.sample.bottom_navigation.BuildConfig;
 import com.snc.sample.bottom_navigation.R;
-import com.snc.sample.bottom_navigation.sharedpreference.PrefConst;
-import com.snc.sample.bottom_navigation.ui.fragment.splash.SplashFragment;
-import com.snc.sample.bottom_navigation.ui.webview.helper.WebViewHelper;
+import com.snc.sample.bottom_navigation.ui.activity.MainActivity;
 import com.snc.zero.dialog.DialogBuilder;
 import com.snc.zero.fragment.BaseFragment;
-import com.snc.zero.json.helper.JSONHelper;
-import com.snc.zero.sharedpreference.PrefEditor;
 import com.snc.zero.util.ActivityUtil;
-
-import org.json.JSONObject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 
 /**
  * Tab 1 Fragment
@@ -32,8 +24,6 @@ import androidx.annotation.Nullable;
  */
 public class Tab1Fragment extends BaseFragment {
     //private static final String TAG = Tab1Fragment.class.getSimpleName();
-
-    private WebView webview;
 
     @Nullable
     @Override
@@ -48,13 +38,6 @@ public class Tab1Fragment extends BaseFragment {
         init(view);
     }
 
-    @Override
-    public void onDestroyView() {
-        WebViewHelper.removeWebView(this.webview);
-        this.webview = null;
-        super.onDestroyView();
-    }
-
     @SuppressLint("AddJavascriptInterface")
     private void init(View view) {
         final ViewGroup contentView = view.findViewById(R.id.contentView);
@@ -66,46 +49,34 @@ public class Tab1Fragment extends BaseFragment {
             return;
         }
 
-        this.webview = WebViewHelper.addWebView(requireContext(), contentView);
-        WebViewHelper.setupClient(this.webview);
-
-        boolean isShowProgress = true;
-        if (isShowProgress && BuildConfig.FEATURE_SPLASH) {
-            if (getFragmentHelper().getCurrentFragment() instanceof SplashFragment) {
-                isShowProgress = false;
+        AppCompatButton button = view.findViewById(R.id.button);
+        button.setOnClickListener(view1 -> {
+            if (getParentActivity() instanceof MainActivity) {
+                ((MainActivity) getParentActivity()).showTitleWeb();
             }
-        }
-        if (isShowProgress && BuildConfig.FEATURE_ONBOARDING) {
-            PrefEditor pref = new PrefEditor(requireContext());
-            if (!"true".equals(pref.getString(PrefConst.DID_ON_BOARDING, ""))) {
-                isShowProgress = false;
-            }
-        }
-        if (isShowProgress && BuildConfig.FEATURE_COACH) {
-            PrefEditor pref = new PrefEditor(requireContext());
-            if (!"true".equals(pref.getString(PrefConst.DID_ON_COACH_GUIDE, ""))) {
-                isShowProgress = false;
-            }
-        }
+        });
 
-        JSONObject obj = new JSONObject();
-        JSONHelper.put(obj, "showProgress", isShowProgress);
-        this.webview.setTag(obj);
-
-        WebViewHelper.loadUrl(this.webview, "https://www.google.com");
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (KeyEvent.ACTION_DOWN == event.getAction()) {
-            if (KeyEvent.KEYCODE_BACK == keyCode) {
-                if (this.webview.canGoBack()) {
-                    this.webview.goBack();
-                    return true;
-                }
+        AppCompatButton button2 = view.findViewById(R.id.button2);
+        button2.setOnClickListener(view1 -> {
+            if (getParentActivity() instanceof MainActivity) {
+                ((MainActivity) getParentActivity()).showTitleWeb2();
             }
-        }
-        return false;
+        });
+
+        AppCompatButton button3 = view.findViewById(R.id.button3);
+        button3.setOnClickListener(view1 -> {
+            if (getParentActivity() instanceof MainActivity) {
+                ((MainActivity) getParentActivity()).showTitleWeb3();
+            }
+        });
+
+        AppCompatButton button4 = view.findViewById(R.id.button4);
+        button4.setOnClickListener(view1 -> {
+            if (getParentActivity() instanceof MainActivity) {
+                ((MainActivity) getParentActivity()).showPopup();
+            }
+        });
+
     }
 
 }

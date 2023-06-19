@@ -1,179 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/contentView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- 타이틀 및 필수 안내 -->
+    <data>
+
+    </data>
+
     <LinearLayout
+        android:id="@+id/contentView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="20dp"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:background="@drawable/bg_bottom_sheet"
         android:orientation="vertical">
 
-        <!-- 타이틀 -->
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:gravity="center_vertical"
-            android:textSize="@dimen/largeFontSize"
-            android:textStyle="bold"
-            android:text="@string/permission_title" />
-
-        <!-- 필수 안내 -->
+        <!-- 타이틀 및 필수 안내 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/mediumFontSize"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
-
-            <!-- 아이콘 -->
-            <LinearLayout
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:gravity="center"
-                android:background="@drawable/bg_rounded_rect_eeeeee"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top|center_horizontal"
-                    android:src="@drawable/svg_ic_phone"
-                    android:contentDescription="@string/permission_storage" />
-            </LinearLayout>
-
-            <!-- 텍스트 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:layout_marginStart="15dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray_333333"
-                    android:textSize="@dimen/mediumFontSize"
-                    android:text="@string/permission_storage" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/gray_999999"
-                    android:textSize="@dimen/smallFontSize"
-                    android:text="@string/permission_storage_desc" />
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <!-- 필수 안내 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/mediumFontSize"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
-
-            <!-- 아이콘 -->
-            <LinearLayout
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:gravity="center"
-                android:background="@drawable/bg_rounded_rect_eeeeee"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top|center_horizontal"
-                    android:src="@drawable/svg_ic_usim"
-                    android:contentDescription="@string/permission_phone_state" />
-            </LinearLayout>
-
-            <!-- 텍스트 -->
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.0"
-                android:layout_marginStart="15dp"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray_333333"
-                    android:textSize="@dimen/mediumFontSize"
-                    android:text="@string/permission_phone_state" />
-                <TextView
-                    android:id="@+id/text2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/gray_999999"
-                    android:textSize="@dimen/smallFontSize"
-                    android:text="@string/permission_phone_state_desc" />
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- 선택 안내 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="20dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="20dp"
-        android:background="@color/gray_f6f6f6">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/gray_666666"
-            android:textSize="@dimen/microFontSize"
-            android:text="@string/permission_optional_title" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="15dp"
+            android:paddingTop="8dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/gray_666666"
-                android:textSize="@dimen/microFontSize"
-                android:text="@string/permission_location" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/gray_666666"
-                android:textSize="@dimen/microFontSize"
-                android:text="@string/permission_camera" />
-        </LinearLayout>
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="0dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="20dp"
-        android:background="@color/gray_f6f6f6">
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
-            style="@style/SNCBottomButtonStyle"
+            <!-- 타이틀 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:baselineAligned="false">
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/xlargeFontSize"
+                    android:textStyle="bold"
+                    android:text="@string/permission_title_1" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="4dp"
+                    android:textSize="@dimen/xlargeFontSize"
+                    android:textStyle="bold"
+                    android:text="@string/permission_title_2" />
+            </LinearLayout>
+
+            <!-- 필수 안내 목록 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:baselineAligned="false">
+
+                <!-- 필수 안내 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/mediumFontSize"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <!-- 아이콘 -->
+                    <LinearLayout
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:background="@drawable/bg_rounded_rect_eeeeee"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|center_horizontal"
+                            android:src="@drawable/svg_ic_phone"
+                            android:contentDescription="@string/permission_storage" />
+                    </LinearLayout>
+
+                    <!-- 텍스트 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:layout_marginStart="15dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/gray_333333"
+                            android:textSize="@dimen/mediumFontSize"
+                            android:textStyle="bold"
+                            android:text="@string/permission_storage" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/gray_999999"
+                            android:textSize="@dimen/smallFontSize"
+                            android:text="@string/permission_storage_desc" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 필수 안내 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/mediumFontSize"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <!-- 아이콘 -->
+                    <LinearLayout
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:background="@drawable/bg_rounded_rect_eeeeee"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top|center_horizontal"
+                            android:src="@drawable/svg_ic_usim"
+                            android:contentDescription="@string/permission_phone_state" />
+                    </LinearLayout>
+
+                    <!-- 텍스트 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:layout_marginStart="15dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/gray_333333"
+                            android:textSize="@dimen/mediumFontSize"
+                            android:textStyle="bold"
+                            android:text="@string/permission_phone_state" />
+                        <TextView
+                            android:id="@+id/text2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/gray_999999"
+                            android:textSize="@dimen/smallFontSize"
+                            android:text="@string/permission_phone_state_desc" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 선택 안내 -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/permission_agree_button" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="25dp"
+            android:background="@color/gray_f6f6f6">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_666666"
+                android:textSize="@dimen/microFontSize"
+                android:text="@string/permission_optional_title" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="15dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="@dimen/microFontSize"
+                    android:text="@string/permission_location" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="@dimen/microFontSize"
+                    android:text="@string/permission_camera" />
+            </LinearLayout>
+        </LinearLayout>
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="0dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="20dp"
+            android:background="@color/gray_f6f6f6">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button"
+                style="@style/SNCBottomButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/permission_agree_button" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

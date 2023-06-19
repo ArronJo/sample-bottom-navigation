@@ -4,32 +4,33 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.snc.sample.bottom_navigation.BuildConfig;
 import com.snc.sample.bottom_navigation.R;
 import com.snc.sample.bottom_navigation.sharedpreference.PrefConst;
 import com.snc.sample.bottom_navigation.ui.fragment.coach.Coach1Fragment;
 import com.snc.sample.bottom_navigation.ui.fragment.coach.Coach2Fragment;
+import com.snc.sample.bottom_navigation.ui.fragment.onboarding.OnBoardingFragment;
+import com.snc.sample.bottom_navigation.ui.fragment.popup.PopupFragment;
+import com.snc.sample.bottom_navigation.ui.fragment.splash.SplashFragment;
 import com.snc.sample.bottom_navigation.ui.fragment.tab.Tab1Fragment;
 import com.snc.sample.bottom_navigation.ui.fragment.tab.Tab2Fragment;
 import com.snc.sample.bottom_navigation.ui.fragment.tab.Tab3Fragment;
-import com.snc.sample.bottom_navigation.ui.fragment.onboarding.OnBoardingFragment;
-import com.snc.sample.bottom_navigation.ui.fragment.splash.SplashFragment;
+import com.snc.sample.bottom_navigation.ui.fragment.web.WebFragment;
 import com.snc.zero.activity.BaseActivity;
 import com.snc.zero.dialog.DialogBuilder;
 import com.snc.zero.fragment.BaseFragment;
 import com.snc.zero.fragment.helper.FragmentHelper;
+import com.snc.zero.fragment.helper.TabHelper;
 import com.snc.zero.log.Logger;
-import com.snc.zero.permission.RPermission;
 import com.snc.zero.permission.RPermissionListener;
 import com.snc.zero.resource.ResourceUtil;
 import com.snc.zero.sharedpreference.PrefEditor;
@@ -44,7 +45,6 @@ import com.snc.zero.widget.viewpager.ViewPager2Adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -57,6 +57,8 @@ import androidx.viewpager2.widget.ViewPager2;
  */
 public class MainActivity extends BaseActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
+
+    private TabHelper mTabHelper;
 
     private FragmentHelper mFragmentHelper;
     private SplashFragment mSplashFragment;
@@ -74,18 +76,36 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private void showNavigation(int position) {
+    private void showNavigation(int tabPosition) {
         showNavigation();
-        mFragmentHelper.show(position);
+        mTabHelper.showTab(tabPosition);
     }
 
     //////////////////////////////////////////////
 
-    private BaseFragment getCurrentFragment() {
-        if (mFragmentHelper.getCurrentFragment() instanceof BaseFragment) {
-            return (BaseFragment) mFragmentHelper.getCurrentFragment();
-        }
-        return null;
+    private void makeNavigationTabs() {
+        final List<Fragment> fragmentList = new ArrayList<>();
+
+        BaseFragment tab1Fragment = new Tab1Fragment();
+        tab1Fragment.setMessageListener((fragment, command, params) -> {
+
+        });
+        fragmentList.add(tab1Fragment);
+
+        BaseFragment tab2Fragment = new Tab2Fragment();
+        tab2Fragment.setMessageListener((fragment, command, params) -> {
+
+        });
+        fragmentList.add(tab2Fragment);
+
+        BaseFragment tab3Fragment = new Tab3Fragment();
+        tab3Fragment.setMessageListener((fragment, command, params) -> {
+
+        });
+        fragmentList.add(tab3Fragment);
+
+        mTabHelper = new TabHelper(getActivity(), R.id.nav_host);
+        mTabHelper.setFragmentList(fragmentList);
     }
 
     //////////////////////////////////////////////
@@ -95,7 +115,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mFragmentHelper = new FragmentHelper(getActivity(), R.id.nav_host);
+        mFragmentHelper = new FragmentHelper(getActivity());
 
         initNavigation();
         hideNavigation();
@@ -125,12 +145,23 @@ public class MainActivity extends BaseActivity {
                     return true;
                 }
 
-                if (null != getCurrentFragment()) {
-                    if (getCurrentFragment().onKeyDown(keyCode, event)) {
+                // Tab 이외 Fragment 에 이벤트 전달
+                if (mFragmentHelper.size() > 0) {
+                    if (mFragmentHelper.getCurrentFragment() instanceof BaseFragment) {
+                        if (((BaseFragment) mFragmentHelper.getCurrentFragment()).onKeyDown(keyCode, event)) {
+                            return true;
+                        }
+                    }
+                }
+
+                // 현재 Tab Fragment 에 이벤트 전달
+                if (null != mTabHelper.getCurrentTab()) {
+                    if (((BaseFragment) mTabHelper.getCurrentTab()).onKeyDown(keyCode, event)) {
                         return true;
                     }
                 }
 
+                // 앱 종료 처리
                 if (BackPressedUtil.onBackPressed(getActivity())) {
                     return true;
                 }
@@ -143,28 +174,11 @@ public class MainActivity extends BaseActivity {
 
     @SuppressLint("NonConstantResourceId")
     private void initNavigation() {
-        final List<Fragment> fragmentList = new ArrayList<>();
-        BaseFragment tab1Fragment = new Tab1Fragment();
-        BaseFragment tab2Fragment = new Tab2Fragment();
-        BaseFragment tab3Fragment = new Tab3Fragment();
-
-        tab1Fragment.setFragmentHelper(mFragmentHelper);
-        tab2Fragment.setFragmentHelper(mFragmentHelper);
-        tab3Fragment.setFragmentHelper(mFragmentHelper);
-
-        fragmentList.add(tab1Fragment);
-        fragmentList.add(tab2Fragment);
-        fragmentList.add(tab3Fragment);
-
-        mFragmentHelper.setFragmentList(fragmentList);
+        makeNavigationTabs();
 
         final BottomNavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
         navigationView.setItemTextColor(ResourceUtil.getColorStateList(getContext(), R.color.selector_black));
-        //navigationView.setOnNavigationItemSelectedListener(item -> {
-        //    Logger.i(TAG, "Selected Item = " + item);
-        //    return showNavigationFromItemId(item.getItemId());
-        //});
         navigationView.setOnItemSelectedListener(item -> {
             Logger.i(TAG, "Selected Item = " + item);
             return showNavigationFromItemId(item.getItemId());
@@ -196,10 +210,11 @@ public class MainActivity extends BaseActivity {
     private void showSplashFragment() {
         Logger.i(TAG, "showSplashFragment()");
         final SplashFragment splashFragment = new SplashFragment();
-        splashFragment.setInteractionListener((fragment, command, params) -> {
+        splashFragment.setFragmentHelper(mFragmentHelper);
+        splashFragment.setMessageListener((fragment, command, params) -> {
             if ("remove".equalsIgnoreCase(command)) {
                 try {
-                    mFragmentHelper.remove(mSplashFragment);
+                    mFragmentHelper.remove(fragment);
                     mSplashFragment = null;
 
                     if (BuildConfig.FEATURE_ONBOARDING) {
@@ -230,7 +245,8 @@ public class MainActivity extends BaseActivity {
     private void showOnBoardingFragment() {
         Logger.i(TAG, "showOnBoardingFragment()");
         final OnBoardingFragment onboardingFragment = new OnBoardingFragment();
-        onboardingFragment.setInteractionListener((fragment, command, params) -> {
+        onboardingFragment.setFragmentHelper(mFragmentHelper);
+        onboardingFragment.setMessageListener((fragment, command, params) -> {
             if ("remove".equalsIgnoreCase(command)) {
                 //mFragmentHelper.remove(onboardingFragment);
                 doCheckPermissions();
@@ -240,6 +256,59 @@ public class MainActivity extends BaseActivity {
         mFragmentHelper.show(R.id.base_layout, onboardingFragment);
 
         mOnboardingFragment = onboardingFragment;
+    }
+
+    private void hideOnBoardingFragment() {
+        if (null != mOnboardingFragment) {
+            mFragmentHelper.remove(mOnboardingFragment);
+            mOnboardingFragment = null;
+        }
+    }
+
+    //////////////////////////////////////////////
+
+    public void showTitleWeb() {
+        Logger.i(TAG, "showTitleWeb()");
+
+        Intent intent = new Intent(getActivity(), WebActivity.class);
+        intent.putExtra("title", "네이버");
+        intent.putExtra("url", "https://m.naver.com");
+        startActivity(intent);
+    }
+
+    public void showTitleWeb2() {
+        Logger.i(TAG, "showTitleWeb2()");
+
+        final WebFragment titleWebFragment = new WebFragment();
+        titleWebFragment.setFragmentHelper(mFragmentHelper);
+        titleWebFragment.setTitle("네이버");
+        titleWebFragment.setUrl("https://m.naver.com");
+        titleWebFragment.setMessageListener((fragment, command, params) -> {
+            if ("finish".equalsIgnoreCase(command))
+            mFragmentHelper.remove(fragment);
+        });
+
+        mFragmentHelper.show(R.id.base_layout, titleWebFragment);
+    }
+
+    public void showTitleWeb3() {
+        Logger.i(TAG, "showTitleWeb3()");
+
+        Intent intent = new Intent(getActivity(), WebFragmentActivity.class);
+        intent.putExtra("title", "네이버");
+        intent.putExtra("url", "https://m.naver.com");
+        startActivity(intent);
+    }
+
+    public void showPopup() {
+        Logger.i(TAG, "showPopup()");
+
+        final PopupFragment popupFragment = new PopupFragment();
+        popupFragment.setFragmentHelper(mFragmentHelper);
+        popupFragment.setTitle("네이버");
+        popupFragment.setUrl("https://m.naver.com");
+
+        mFragmentHelper.show(R.id.base_layout, popupFragment);
     }
 
     //////////////////////////////////////////////
@@ -271,10 +340,14 @@ public class MainActivity extends BaseActivity {
             PrefEditor pref = new PrefEditor(getContext());
             pref.putString(PrefConst.DID_ON_COACH_GUIDE, "true");
 
-            getRootView().removeView(coachGuideView);
+            hideCoachGuide(coachGuideView);
 
             UIStatusBar.setWhiteColorOnBackground(getActivity());
         });
+    }
+
+    private void hideCoachGuide(View view) {
+        getRootView().removeView(view);
     }
 
     //////////////////////////////////////////////
@@ -283,45 +356,41 @@ public class MainActivity extends BaseActivity {
         List<String> permissions = new ArrayList<>();
         // Dangerous Permission
         permissions.add(Manifest.permission.READ_PHONE_STATE);
-        permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        }
         permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         doCheckPermissions(permissions);
     }
 
     private void doCheckPermissions(List<String> permissions) {
-        RPermission.with(getContext())
-                .setPermissionListener(new RPermissionListener() {
-                    @Override
-                    public void onPermissionGranted() {
-                        Logger.i(TAG, "onPermissionGranted()");
+        doCheckPermissions(permissions, new RPermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                Logger.i(TAG, "onPermissionGranted()");
 
-                        PrefEditor pref = new PrefEditor(getContext());
-                        pref.putString(PrefConst.DID_ON_BOARDING, "true");
+                PrefEditor pref = new PrefEditor(getContext());
+                pref.putString(PrefConst.DID_ON_BOARDING, "true");
 
-                        if (BuildConfig.FEATURE_ONBOARDING) {
-                            if (null != mOnboardingFragment) {
-                                mFragmentHelper.remove(mOnboardingFragment);
-                                mOnboardingFragment = null;
-                            }
-                        }
+                if (BuildConfig.FEATURE_ONBOARDING) {
+                    hideOnBoardingFragment();
+                }
 
-                        startApplication();
-                    }
+                startApplication();
+            }
 
-                    @Override
-                    public void onPermissionDenied(List<String> deniedPermissions, int status) {
-                        Logger.e(TAG, "onPermissionDenied()..." + deniedPermissions.toString());
+            @Override
+            public void onPermissionDenied(List<String> deniedPermissions, int status) {
+                Logger.e(TAG, "onPermissionDenied()..." + deniedPermissions.toString());
 
-                        if (0 == status) {
-                            doCheckPermissions(deniedPermissions);
-                        } else {
-                            showPermissionNotice();
-                        }
-                    }
-                })
-                .setPermissions(permissions)
-                .check();
+                if (0 == status) {
+                    doCheckPermissions(deniedPermissions);
+                } else {
+                    showPermissionNotice();
+                }
+            }
+        });
     }
 
     private void showPermissionNotice() {

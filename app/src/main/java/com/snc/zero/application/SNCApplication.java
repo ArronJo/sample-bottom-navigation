@@ -1,7 +1,10 @@
 package com.snc.zero.application;
 
+import android.content.Context;
+
 import com.snc.zero.log.Logger;
 
+import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
 /**
@@ -17,6 +20,13 @@ public class SNCApplication extends MultiDexApplication {
     public void onCreate() {
         Logger.i(TAG, ">>>>>>>>>> onCreate <<<<<<<<<<");
         super.onCreate();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        // https://stackoverflow.com/questions/60472222/e-loadedapk-unable-to-instantiate-appcomponentfactory-only-on-android-q-api-29
+        MultiDex.install(this);
+        super.attachBaseContext(base);
     }
 
     @Override

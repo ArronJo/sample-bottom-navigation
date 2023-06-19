@@ -15,6 +15,13 @@ import java.net.URISyntaxException;
  */
 public class IntentUtil {
 
+    public static String getStringExtra(Intent intent, String key, String defaultValue) {
+        if (!intent.hasExtra(key)) {
+            return defaultValue;
+        }
+        return intent.getStringExtra(key);
+    }
+
     public static void view(Context context, Uri uri) throws ActivityNotFoundException {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.addCategory(Intent.CATEGORY_BROWSABLE);
